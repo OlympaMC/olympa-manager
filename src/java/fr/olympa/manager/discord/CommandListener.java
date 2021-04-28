@@ -1,4 +1,4 @@
-package fr.olympa.manager;
+package fr.olympa.manager.discord;
 
 import java.io.IOException;
 
