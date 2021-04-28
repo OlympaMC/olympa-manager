@@ -2,7 +2,7 @@ package fr.olympa.manager;
 
 import java.io.IOException;
 
-import fr.olympa.manager.server.ScriptAction;
+import fr.olympa.manager.api.ScriptAction;
 import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Member;
@@ -26,14 +26,14 @@ public class CommandListener extends ListenerAdapter {
 		Member otherBot = guild.getMemberById(660223974000689182l);
 		if (otherBot == null)
 			return;
-		if (otherBot.getOnlineStatus() != OnlineStatus.OFFLINE)
+		if (otherBot.getOnlineStatus() != OnlineStatus.OFFLINE || otherBot.getOnlineStatus() == OnlineStatus.UNKNOWN)
 			return;
 		if (!message.getContentDisplay().equalsIgnoreCase(".start bungee1")) {
 			channel.sendMessage("Il semblerait que " + otherBot.getAsMention() + " est débrancher... Tu peux l'allumer en faisant `.start bungee1`, je m'en occupe après.").queue();
 			return;
 		}
 		try {
-			ScriptAction.action("mc start bungee1", s -> channel.sendMessage(s.replaceAll("\\[\\d*(;\\d*)?m?", "")).queue());
+			ScriptAction.actionWithoutColor("mc start bungee1", s -> channel.sendMessage(s).queue());
 		} catch (IOException | InterruptedException e) {
 			channel.sendMessage("Erreur > `" + e.getMessage() + "`").queue();
 			e.printStackTrace();
