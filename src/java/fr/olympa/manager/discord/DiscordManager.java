@@ -17,12 +17,11 @@ public class DiscordManager {
 		INSTANCE = this;
 	}
 
-	@SuppressWarnings("deprecation")
 	public void connect() throws LoginException {
-		JDABuilder builder = new JDABuilder("ODM0OTYyMjE1MzExOTAwNzIy.YIIhKA.Rt9SxYSB3A9HA2CaCEVUfDwcHAM");
+		JDABuilder builder = JDABuilder.createDefault("ODM0OTYyMjE1MzExOTAwNzIy.YIIhKA.Rt9SxYSB3A9HA2CaCEVUfDwcHAM");
+		builder.enableIntents(GatewayIntent.GUILD_PRESENCES);
 		builder.setStatus(OnlineStatus.DO_NOT_DISTURB);
 		builder.addEventListeners(new CommandListener());
-		builder.enableIntents(GatewayIntent.GUILD_PRESENCES);
 		jda = builder.build();
 	}
 }
