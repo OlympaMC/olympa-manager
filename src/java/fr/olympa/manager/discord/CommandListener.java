@@ -38,12 +38,11 @@ public class CommandListener extends ListenerAdapter {
 		if (!message.getContentDisplay().split(" ")[0].matches("^\\.[a-zA-Z]+$"))
 			return;
 		guild.retrieveMemberById(660223974000689182l).queue(otherBot -> {
-			if (isOnline || otherBot.getOnlineStatus() != OnlineStatus.OFFLINE)
+			//			if (isOnline || otherBot.getOnlineStatus() != OnlineStatus.OFFLINE)
+			//				return;
+			if (!message.getContentDisplay().equalsIgnoreCase(".start bungee1"))
+				//				channel.sendMessage("Il semblerait que " + otherBot.getAsMention() + " est " + otherBot.getOnlineStatus().getKey() + "... Tu peux l'allumer en faisant `.start bungee1`, je m'en occupe après.").queue();
 				return;
-			if (!message.getContentDisplay().equalsIgnoreCase(".start bungee1")) {
-				channel.sendMessage("Il semblerait que " + otherBot.getAsMention() + " est " + otherBot.getOnlineStatus().getKey() + "... Tu peux l'allumer en faisant `.start bungee1`, je m'en occupe après.").queue();
-				return;
-			}
 			try {
 				ScriptAction.actionWithoutColor("mc start bungee1", s -> channel.sendMessage(s).queue());
 			} catch (IOException | InterruptedException e) {
