@@ -2,7 +2,7 @@ package fr.olympa.manager.discord;
 
 import java.io.IOException;
 
-import fr.olympa.manager.api.ScriptAction;
+import fr.olympa.manager.api.java.ScriptAction;
 import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Member;
